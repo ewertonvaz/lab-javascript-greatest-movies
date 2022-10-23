@@ -43,13 +43,14 @@ function dramaMoviesScore(moviesArray) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
     let sorted = [...moviesArray];
-    sorted.sort((a, b) => a.year - b.year);
     sorted.sort((a, b) => {
-        if (a.year === b.year) {
-            b.title.localeCompare(a.title)
+        if ( a.year !== b.year ) {
+            return a.year - b.year;
+        } else {
+            return a.title.localeCompare(b.title)
         }
     });
-    //console.log(sorted);
+    // console.log(sorted);
     return sorted;
 }
 
@@ -102,7 +103,7 @@ function bestYearAvg(moviesArray) {
     // Calcular o AvgScore de cada ano e determinar o maior
     arrFilmByYear.forEach( el => {
         let nextScore = scoresAverage(el.movies);
-        console.log(el.year, el.movies);
+        // console.log(el.year, el.movies);
         if (nextScore > maxScore) {
             maxScore = nextScore;
             year = el.year;
